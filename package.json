@@ -1,0 +1,15 @@
+{
+  "name": "st-alban-mass-video",
+  "version": "1.0.0",
+  "description": "Helpers for making the St. Alban Mass Videos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ed Brannin",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.26.0",
+    "nunjucks": "^3.2.1"
+  }
+}
