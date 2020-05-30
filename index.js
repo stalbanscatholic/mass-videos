@@ -23,5 +23,11 @@ context.year = moment(context.isodate).year();
 
 console.log(context)
 
-const captions = nunjucks.render('video-captions.njk', context);
-console.log(captions)
+const logResult = filename => {
+  const result = nunjucks.render(filename, context);
+  console.log(result);
+  return result;
+};
+
+// logResult('video-captions.njk');
+logResult('post-body.njk');
