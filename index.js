@@ -4,7 +4,7 @@ const moment = require('moment')
 nunjucks.configure();
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-05-30',
+  isodate: '2020-05-31',
   massCount: 'Pentecost Sunday',
   massCommon: '',
   time: '11 AM',
