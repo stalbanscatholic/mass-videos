@@ -4,7 +4,7 @@ const moment = require('moment')
 nunjucks.configure();
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-05-31',
+  isodate: '2020-06-05',
   massCount: 'Pentecost Sunday',
   massCommon: '',
   time: '11 AM',
@@ -41,10 +41,9 @@ const context = {
   
 }
 context.mass = context.massCommon || context.massCount;
-context.date = moment(context.isodate).format('MMM D, YYYY');
+context.date = moment(context.isodate).format('MMMM D, YYYY');
 context.year = moment(context.isodate).year();
 
-console.log(context)
 
 const logResult = filename => {
   const result = nunjucks.render(filename, context);
@@ -52,5 +51,16 @@ const logResult = filename => {
   return result;
 };
 
-logResult('video-captions.njk');
-logResult('post-body.njk');
+const main = () => {
+  console.log(context)
+  if (process.argv.length > 2) {
+    process.argv.slice(2).forEach(arg => logResult(arg));
+  } else {
+    logResult('video-captions.njk');
+    logResult('post-body.njk');
+  }
+}
+
+if (!module.parent) {
+  main();
+}
