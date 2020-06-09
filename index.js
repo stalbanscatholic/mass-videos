@@ -1,44 +1,34 @@
+#!/usr/bin/env node
+
 const nunjucks = require('nunjucks');
 const moment = require('moment')
 
 nunjucks.configure();
+
+const parsePsalm = (title, text) => [[title], ...text.trim().split('\n\n').map(verse => verse.split(/ \| |\n/).map(line => line.trim()))]
+
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-06-05',
-  massCount: 'Pentecost Sunday',
+  isodate: '2020-06-07',
+  massCount: 'Trinity Sunday',
   massCommon: '',
   time: '11 AM',
   priest: 'Fr. Evan Simington',
-  psalm: [
-    [
-      'Psalm 104: Benedic, anima mea.',
-    ],
-    [
-      'PRAISE the LORD, O my soul:',
-      'O LORD my God, thou art become exceeding glorious;',
-      'thou art clothed with majesty and honour.',
-      'Thou deckest thyself with light as it were with a garment,',
-    ],
-    [
-      'O LORD, how manifold are thy works!',
-      'in wisdom hast thou made them all;',
-      'the earth is full of thy riches.',
-      'Praise thou the LORD, O my soul. Praise the LORD.',
-    ],
-    [
-      'These wait all upon thee,',
-      'that thou mayest give them meat in due season.',
-      'When thou givest it them, they gather it;',
-      'and when thou openest thy hand, they are filled with good.',
-    ],
-    [
-      'When thou takest away their breath, they die,',
-      'and are turned again to their dust.',
-      'When thou lettest thy breath go forth, they shall be made;',
-      'and thou shalt renew the face of the earth.',
-    ],
-  ]
-  
+  psalm: parsePsalm(
+    'Dan 3:52-56: Benedictus es, Domine',
+    `
+    Blessed art thou, O Lord God of our fathers: | praised and exalted above all for ever.
+    Blessed art thou for the Name of thy majesty: | praised and exalted above all for ever.
+
+    Blessed art thou in the temple of thy holiness: | praised and exalted above all for ever.
+    Blessed art thou that beholdest the depths, and dwellest between the Cherubim: | praised and exalted above all for ever.
+
+    Blessed art thou on the glorious throne of thy kingdom: | praised and exalted above all for ever.
+    Blessed art thou in the firmament of heaven: | praised and exalted above all for ever.
+
+    Blessed art thou, O Father, Son, and Holy Spirit: | praised and exalted above all for ever.
+    `
+  ),
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');
