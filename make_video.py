@@ -8,7 +8,8 @@ MASS_VIDEOS_DIR = '/Users/edbrannin/Movies/Mass Videos'
 def input(f, parent_dir=MASS_VIDEOS_DIR, loop_frames=None):
     stream = ffmpeg.input(os.path.join(parent_dir, f))
     if loop_frames:
-        stream = ffmpeg.filter(stream, 'loop', loop=loop_frames)
+        print('Looping {} frames of {}'.format(loop_frames, f))
+        stream = ffmpeg.filter(stream, 'loop', size=loop_frames)
     return stream
 
 def mass_part_inputs(parent_dir):
@@ -38,12 +39,24 @@ def main():
     # print(mass_parts)
     print(after_screen)
 
+    split_last_mass_part = ffmpeg.filter_multi_output(mass_parts[-1], 'split')
+    mass_parts[-1] = split_last_mass_part.stream(0)
+    last_mass_part_fade = split_last_mass_part.stream(1)
+    # ffmpeg.concat(split0, split1).output('out.mp4').run() 
+
+
     print(mass_parts[-1])
     mass_parts[-1] = ffmpeg.trim(mass_parts[-1], end=10)
     print(mass_parts[-1])
 
-    result = ffmpeg.concat(mass_parts[-1], ffmpeg.filter([mass_parts[-1], after_screen], 'xfade'))
-    print(ffmpeg.get_args(result))
+    result = ffmpeg.concat(
+        mass_parts[-1],
+        # ffmpeg.filter([last_mass_part_fade, after_screen], 'xfade'),
+
+        after_screen,
+    ).output('out.mp4')
+    print(' '.join(ffmpeg.get_args(result)))
+    result.run()
 
 if __name__ == '__main__':
     main()
