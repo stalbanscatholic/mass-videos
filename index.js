@@ -9,25 +9,25 @@ const parsePsalm = (title, text) => [[title], ...text.trim().split('\n\n').map(v
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-06-07',
-  massCount: 'Trinity Sunday',
+  isodate: '2020-06-10',
+  massCount: 'Wednesday, 10 June',
   massCommon: '',
-  time: '11 AM',
+  time: '7 PM',
   priest: 'Fr. Evan Simington',
   psalm: parsePsalm(
-    'Dan 3:52-56: Benedictus es, Domine',
+    'Psalm 16: Conserva me, Domine',
     `
-    Blessed art thou, O Lord God of our fathers: | praised and exalted above all for ever.
-    Blessed art thou for the Name of thy majesty: | praised and exalted above all for ever.
-
-    Blessed art thou in the temple of thy holiness: | praised and exalted above all for ever.
-    Blessed art thou that beholdest the depths, and dwellest between the Cherubim: | praised and exalted above all for ever.
-
-    Blessed art thou on the glorious throne of thy kingdom: | praised and exalted above all for ever.
-    Blessed art thou in the firmament of heaven: | praised and exalted above all for ever.
-
-    Blessed art thou, O Father, Son, and Holy Spirit: | praised and exalted above all for ever.
-    `
+    Preserve me, O God; | for in thee have I put my trust.
+    O my soul, thou hast said unto the LORD, | Thou art my God.
+    
+    But they that run after another god | shall have great trouble.
+    Their drink-offerings of blood I will not offer, | neither make mention of their names within my lips.
+    
+    The LORD himself is the portion of mine inheritance, and of my cup; | thou shalt maintain my lot.
+    I have set the LORD alway be- fore me; | for he is on my right hand, therefore I shall not fall.
+    
+    Thou shalt show me the path of life: in thy presence is the fullness of joy, | and at thy right hand there is pleasure for ever- more.
+        `
   ),
 }
 context.mass = context.massCommon || context.massCount;
