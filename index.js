@@ -5,7 +5,15 @@ const moment = require('moment')
 
 nunjucks.configure();
 
-const parsePsalm = (title, text) => [[title], ...text.trim().split('\n\n').map(verse => verse.split(/ \| |\n/).map(line => line.trim()))]
+const parsePsalm = (title, text) => [
+  [title],
+  ...text.trim().split('\n\n').map(
+    verse => verse
+      .split(/ \| |\n/)
+      .map(line => line
+        .trim()
+        .replace(/(\w+-) (\w)/, '$1$2')
+      ))]
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
