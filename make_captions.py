@@ -89,7 +89,7 @@ class TextOverlay(object):
         
 
     def draw_background(self):
-        image = Image.new('RGBA', self.image_size, (255,255,255,0))
+        image = Image.new('RGBA', self.image_size, (0,0,0,0))
         d = ImageDraw.Draw(image)
         text_width, text_height = d.multiline_textsize(self.text, font=self.font)
         image_width, image_height = self.image_size
