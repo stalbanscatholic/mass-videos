@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 
+import os
+from glob import glob
 import math
+
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 from rounded_rectangle import rounded_rectangle
@@ -102,7 +105,7 @@ class TextOverlay(object):
                 )
 
 def get_text_overlay(text, font=None, image_size=(1920, 1080), padding=42, debug=False):
-    overlay = TextOverlay(text, font=None, image_size=(1920, 1080), padding=42, debug=False)
+    overlay = TextOverlay(text, font, image_size, padding, debug)
     return overlay.get_overlay()
 
 TEXT = """
@@ -121,9 +124,12 @@ Amen.
 """.strip()
 
 def main():
-    text_image = get_text_overlay(TEXT)
-    text_image.show()
-    text_image.save('caption.png')
+    for font_path in glob('fonts/*'):
+        name = os.path.basename(font_path[:-4])
+        font = ImageFont.truetype(font_path, 42)
+        text_image = get_text_overlay(TEXT, font=font)
+        text_image.show()
+        text_image.save('caption-{}.png'.format(name))
 
 if __name__ == '__main__':
     main()
