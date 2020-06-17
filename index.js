@@ -17,24 +17,22 @@ const parsePsalm = (title, text) => [
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-06-10',
-  massCount: 'Wednesday, 10 June',
-  massCommon: '',
-  time: '7 PM',
+  isodate: '2020-06-14',
+  massCount: 'Solemnity of the Most Holy Body and Blood of Christ',
+  massCommon: 'Corpus Christi',
+  time: '11 AM',
   priest: 'Fr. Evan Simington',
   psalm: parsePsalm(
-    'Psalm 16: Conserva me, Domine',
+    'Psalm 147',
     `
-    Preserve me, O God; | for in thee have I put my trust.
-    O my soul, thou hast said unto the LORD, | Thou art my God.
+    Praise the LORD, O Je- rusalem; | praise thy God, O Sion.
+    For he hath made fast the bars of thy gates, | and hath blessed thy children with- in thee.
     
-    But they that run after another god | shall have great trouble.
-    Their drink-offerings of blood I will not offer, | neither make mention of their names within my lips.
+    He maketh peace in thy borders, | and filleth thee with the flour of wheat.
+    He sendeth forth his commandment upon earth, | and his word runneth very swiftly.
     
-    The LORD himself is the portion of mine inheritance, and of my cup; | thou shalt maintain my lot.
-    I have set the LORD alway be- fore me; | for he is on my right hand, therefore I shall not fall.
-    
-    Thou shalt show me the path of life: in thy presence is the fullness of joy, | and at thy right hand there is pleasure for ever- more.
+    He showeth his word unto Jacob, | his statutes and ordinances unto Israel.
+    He hath not dealt so with any nation; | neither have the heathen knowledge of his laws.
         `
   ),
 }
