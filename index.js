@@ -17,24 +17,25 @@ const parsePsalm = (title, text) => [
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-06-14',
-  massCount: 'Solemnity of the Most Holy Body and Blood of Christ',
-  massCommon: 'Corpus Christi',
+  isodate: '2020-06-20',
+  massCount: 'Patronal Feast of St. Alban',
+  massCommon: '',
   time: '11 AM',
   priest: 'Fr. Evan Simington',
   psalm: parsePsalm(
-    'Psalm 147',
+    'Psalm 31',
     `
-    Praise the LORD, O Je- rusalem; | praise thy God, O Sion.
-    For he hath made fast the bars of thy gates, | and hath blessed thy children with- in thee.
+    Be thou my strong rock, and house of de- fence, | that thou mayest save me.
+    For thou art my strong rock, and my castle: | be thou also my guide, and lead me for thy Name's sake.
     
-    He maketh peace in thy borders, | and filleth thee with the flour of wheat.
-    He sendeth forth his commandment upon earth, | and his word runneth very swiftly.
+    Into thy hands I commend my spirit; | for thou hast redeemed me, O LORD, thou God of truth.
+    I will be glad and rejoice in thy mercy; | for thou hast considered my trouble, and hast known my soul in ad- versities.
     
-    He showeth his word unto Jacob, | his statutes and ordinances unto Israel.
-    He hath not dealt so with any nation; | neither have the heathen knowledge of his laws.
-        `
+    My times are in thy hand; deliver me from the hand of mine enemies, | and from them that persecute me.
+    Show thy servant the light of thy countenance, | and save me for thy mercy's sake.
+    `
   ),
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/6/Patronal%20Feast%20of%20St.%20Alban%20Sunday%20June%2021st.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');

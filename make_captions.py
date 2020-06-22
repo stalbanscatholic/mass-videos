@@ -132,128 +132,30 @@ def split_paragraphs(text):
 
 CAPTIONS=[
     """
-    The Divine Worship Mass for Corpus Christi 2020 at St. Alban’s Catholic Church,
-    a parish community of the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
+    The Divine Worship Mass for the Patronal Feast of St. Alban
+    on 21 June, 2020 at St. Alban’s Catholic Church, a parish community of
+    the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
 
 Please take these few moments to prayerfully prepare for Mass.
     """,
     *split_paragraphs("""
-    Psalm 147
+Psalm 31
 
-Praise the LORD, O Je-rusalem;
-praise thy God, O Sion.
-For he hath made fast the bars of thy gates,
-and hath blessed thy children with-in thee.
+Be thou my strong rock, and house of de-fence,
+that thou mayest save me.
+For thou art my strong rock, and my castle:
+be thou also my guide, and lead me for thy Name's sake.
 
-He maketh peace in thy borders,
-and filleth thee with the flour of wheat.
-He sendeth forth his commandment upon earth,
-and his word runneth very swiftly.
+Into thy hands I commend my spirit;
+for thou hast redeemed me, O LORD, thou God of truth.
+I will be glad and rejoice in thy mercy;
+for thou hast considered my trouble, and hast known my soul in ad-versities.
 
-He showeth his word unto Jacob,
-his statutes and ordinances unto Israel.
-He hath not dealt so with any nation;
-neither have the heathen knowledge of his laws.
+My times are in thy hand; deliver me from the hand of mine enemies,
+and from them that persecute me.
+Show thy servant the light of thy countenance,
+and save me for thy mercy's sake.
     """),
-    *split_paragraphs("""
-Sequence: Lauda Sion Salvatorem 
-St. Thomas Aquinas
-
-Laud, O Sion, thy salvation,
-Laud with hymns of exultation
-Christ, thy King and Shepherd true:
-Spend thyself, his honour raising,
-Who surpasseth all thy praising;
-Never canst thou reach his due.
--
-Sing today, the mystery showing
-Of the living, life-bestowing
-Bread from heaven before thee set;
-E’en the same of old provided,
-Where the Twelve, divinely guided,
-At the holy Table met.
-
-Full and clear ring out thy chanting,
-Joy nor sweetest grace be wanting
-To thy heart and soul to-day;
-When we gather up the measure
-Of that Supper and its treasure,
-Keeping feast in glad array.
--
-Lo, the new King’s Table gracing,
-This new Passover of blessing
-Hath fulfilled the elder rite:
-Now the new the old effaceth,
-Truth revealed the shadow chaseth,
-Day is breaking on the night.
-
-What he did at Supper seated,
-Christ ordained to be repeated,
-His memorial ne’er to cease:
-And, his word for guidance taking,
-Bread and wine we hallow, making
-Thus our Sacrifice of peace.
--
-This the truth to Christians given - 
-Bread becomes his Flesh from heaven,
-Wine becomes his holy Blood.
-Doth it pass thy comprehending?
-Yet by faith, thy sight transcending,
-Wondrous things are understood.
-
-Yea, beneath these signs are hidden
-Glorious things to sight forbidden:
-Look not on the outward sign.
-Wine is poured and Bread is broken,
-But in either sacred token
-Christ is here by power divine.
--
-Whoso of this Food partaketh,
-Rendeth not the Lord nor breaketh:
-Christ is whole to all that taste.
-Thousands are, as one, receivers
-One, as thousands of believers,
-Takes the Food that cannot waste.
-
-Good and evil men are sharing
-One repast, a doom preparing
-Varied as the heart of man;
-Doom of life or death awarded,
-As their days shall be recorded
-Which from one beginning ran.
--
-When the Sacrament is broken,
-Doubt not in each severed token,
-Hallowed by the word once spoken,
-Resteth all the true content:
-Nought the precious Gift divideth,
-Breaking but the sign betideth,
-He himself the same abideth,
-Nothing of his fullness spent.
-
-Lo! the Angels’ Food is given
-To the pilgrim who hath striven;
-See the children’s Bread from heaven,
-Which to dogs may not be cast;
-Truth the ancient types fulfilling,
-Isaac bound, a victim willing,
-Paschal lamb, its life-blood spilling,
-Manna sent in ages past.
--
-O true Bread, good Shepherd, tend us,
-Jesu, of thy love befriend us,
-Thou refresh us, thou defend us,
-Thine eternal goodness send us
-In the land of life to see;
-
-Thou who all things canst and knowest,
-Who on earth such Food bestowest,
-Grant us with thy Saints, though lowest,
-Where the heavenly Feast thou showest,
-Fellow-heirs and guests to be.
-Amen. Alleluia.
-
-                     """),
     """
     ALMIGHTY God,
 Father of our Lord Jesus Christ,
@@ -315,13 +217,6 @@ be all honour and glory, world without end.
 -
 Amen.
     """),
-    """
-    We processed around the building,
-    to an altar set up behind the church.
-    """,
-    """
-    We processed back into the church.
-    """
 ]
 
 def main():
@@ -330,7 +225,9 @@ def main():
             name = os.path.basename(font_path[:-4])
             font = ImageFont.truetype(font_path, 42)
             text_image = get_text_overlay(caption, font=font)
-            text_image.save('caption-{}-{}.png'.format(i, name))
+            filename = 'caption-{}-{}.png'.format(i, name)
+            text_image.save(filename)
+            print('Write {}'.format(filename))
 
 if __name__ == '__main__':
     main()
