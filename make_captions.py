@@ -132,29 +132,32 @@ def split_paragraphs(text):
 
 CAPTIONS=[
     """
-    The Divine Worship Mass for the Patronal Feast of St. Alban
-    on 21 June, 2020 at St. Alban’s Catholic Church, a parish community of
-    the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
-
-Please take these few moments to prayerfully prepare for Mass.
+The Divine Worship Mass for Fourth Sunday after Trinity 2020
+at St. Alban’s Catholic Church, a parish community of
+the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
     """,
     *split_paragraphs("""
-Psalm 31
+Psalm 145: Exaltabo te, Deus
 
-Be thou my strong rock, and house of de-fence,
-that thou mayest save me.
-For thou art my strong rock, and my castle:
-be thou also my guide, and lead me for thy Name's sake.
+I will magnify thee, O God, my King;
+and I will praise thy Name for ever and ever.
+Every day will I give thanks unto thee;
+and praise thy Name for ever and ever.
 
-Into thy hands I commend my spirit;
-for thou hast redeemed me, O LORD, thou God of truth.
-I will be glad and rejoice in thy mercy;
-for thou hast considered my trouble, and hast known my soul in ad-versities.
+The LORD is gracious and merciful;
+long-suffering, and of great goodness.
+The LORD is loving unto every man;
+and his mercy is over all his works.
 
-My times are in thy hand; deliver me from the hand of mine enemies,
-and from them that persecute me.
-Show thy servant the light of thy countenance,
-and save me for thy mercy's sake.
+All thy works praise thee, O LORD;
+and thy saints give thanks unto thee.
+They show the glory of thy kingdom,
+and talk of thy power;
+
+Thy kingdom is an everlasting kingdom,
+and thy dominion endureth throughout all ages.
+The LORD upholdeth all such as fall,
+and lifteth up all those that are down.
     """),
     """
     ALMIGHTY God,
@@ -220,12 +223,13 @@ Amen.
 ]
 
 def main():
+    os.makedirs('output', exist_ok=True)
     for font_path in glob('fonts/*'):
         for i, caption in enumerate(CAPTIONS):
             name = os.path.basename(font_path[:-4])
             font = ImageFont.truetype(font_path, 42)
             text_image = get_text_overlay(caption, font=font)
-            filename = 'caption-{}-{}.png'.format(i, name)
+            filename = 'output/caption-{}-{}.png'.format(i, name)
             text_image.save(filename)
             print('Write {}'.format(filename))
 

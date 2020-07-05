@@ -13,29 +13,33 @@ const parsePsalm = (title, text) => [
       .map(line => line
         .trim()
         .replace(/(\w+-) (\w)/, '$1$2')
+        .replace(/^\d+ +/, '')
       ))]
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-06-20',
-  massCount: 'Patronal Feast of St. Alban',
+  isodate: '2020-07-05',
+  massCount: 'Fourth Sunday after Trinity',
   massCommon: '',
   time: '11 AM',
-  priest: 'Fr. Evan Simington',
+  priest: 'Fr. Nathan Davis',
   psalm: parsePsalm(
-    'Psalm 31',
+    'Psalm 145: Exaltabo te, Deus',
     `
-    Be thou my strong rock, and house of de- fence, | that thou mayest save me.
-    For thou art my strong rock, and my castle: | be thou also my guide, and lead me for thy Name's sake.
-    
-    Into thy hands I commend my spirit; | for thou hast redeemed me, O LORD, thou God of truth.
-    I will be glad and rejoice in thy mercy; | for thou hast considered my trouble, and hast known my soul in ad- versities.
-    
-    My times are in thy hand; deliver me from the hand of mine enemies, | and from them that persecute me.
-    Show thy servant the light of thy countenance, | and save me for thy mercy's sake.
+    1 I will magnify thee, O God, my King; | and I will praise thy Name for ever and ever.
+    2 Every day will I give thanks unto thee; | and praise thy Name for ever and ever.
+
+    8 The LORD is gracious and merciful; | long-suffering, and of great goodness.
+    9 The LORD is loving unto every man; | and his mercy is over all his works.
+
+    10 All thy works praise thee, O LORD; | and thy saints give thanks unto thee.
+    11 They show the glory of thy kingdom, | and talk of thy power;
+
+    13 Thy kingdom is an everlasting kingdom, | and thy dominion endureth throughout all ages.
+    14 The LORD upholdeth all such as fall, | and lifteth up all those that are down.
     `
   ),
-  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/6/Patronal%20Feast%20of%20St.%20Alban%20Sunday%20June%2021st.pdf',
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/4th%20Sunday%20After%20Trinity%20Worship%20Aid.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');
