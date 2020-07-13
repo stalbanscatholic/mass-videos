@@ -9,6 +9,7 @@ const parsePsalm = (title, text) => [
   [title],
   ...text.trim().split('\n\n').map(
     verse => verse
+      .replace(/\u200b/, '')
       .split(/ \| |\n/)
       .map(line => line
         .trim()
@@ -18,28 +19,25 @@ const parsePsalm = (title, text) => [
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-07-05',
-  massCount: 'Fourth Sunday after Trinity',
+  isodate: '2020-07-12',
+  massCount: 'Fifth Sunday after Trinity',
   massCommon: '',
   time: '11 AM',
   priest: 'Fr. Nathan Davis',
   psalm: parsePsalm(
-    'Psalm 145: Exaltabo te, Deus',
+    'Psalm 65: ​Te decet hymnus',
     `
-    1 I will magnify thee, O God, my King; | and I will praise thy Name for ever and ever.
-    2 Every day will I give thanks unto thee; | and praise thy Name for ever and ever.
+    9 Thou visitest the earth, and ​blessest it; ​| thou makest it very ​plenteous.
+    10 The river of God is full of ​water:​ | thou preparest their corn, for so thou providest for the ​earth.
 
-    8 The LORD is gracious and merciful; | long-suffering, and of great goodness.
-    9 The LORD is loving unto every man; | and his mercy is over all his works.
+    11 Thou waterest her furrows; thou sendest rain into the little valleys there- ​of;​ | thou makest it soft with the drops of rain, and blessest the ​increase of it.
+    12 Thou crownest the year with thy ​goodness; ​| and thy clouds drop ​fatness.
 
-    10 All thy works praise thee, O LORD; | and thy saints give thanks unto thee.
-    11 They show the glory of thy kingdom, | and talk of thy power;
-
-    13 Thy kingdom is an everlasting kingdom, | and thy dominion endureth throughout all ages.
-    14 The LORD upholdeth all such as fall, | and lifteth up all those that are down.
+    13 They shall drop upon the dwellings of the ​wilderness; ​| and the little hills shall rejoice on every ​side.
+    14 The folds shall be full of ​sheep; |​ the valleys also shall stand so thick with corn, that they shall laugh and ​sing.
     `
   ),
-  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/4th%20Sunday%20After%20Trinity%20Worship%20Aid.pdf',
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/5th%20Sunday%20After%20Trinity%20Worship%20Aid.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');

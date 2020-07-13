@@ -132,33 +132,31 @@ def split_paragraphs(text):
 
 CAPTIONS=[
     """
-The Divine Worship Mass for Fourth Sunday after Trinity 2020
+The Divine Worship Mass for Fifth Sunday after Trinity 2020
 at St. Alban’s Catholic Church, a parish community of
 the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
     """,
     *split_paragraphs("""
-Psalm 145: Exaltabo te, Deus
+Psalm 65: Te decet hymnus
 
-I will magnify thee, O God, my King;
-and I will praise thy Name for ever and ever.
-Every day will I give thanks unto thee;
-and praise thy Name for ever and ever.
+Thou visitest the earth, and blessest it; 
+thou makest it very plenteous.
+The river of God is full of water:
+thou preparest their corn, for so thou providest for the earth.
 
-The LORD is gracious and merciful;
-long-suffering, and of great goodness.
-The LORD is loving unto every man;
-and his mercy is over all his works.
+Thou waterest her furrows; thou sendest rain into the little valleys there-of;
+thou makest it soft with the drops of rain, and blessest the increase of it.
+Thou crownest the year with thy goodness; 
+and thy clouds drop fatness.
 
-All thy works praise thee, O LORD;
-and thy saints give thanks unto thee.
-They show the glory of thy kingdom,
-and talk of thy power;
+They shall drop upon the dwellings of the wilderness; 
+and the little hills shall rejoice on every side.
+The folds shall be full of sheep;
+the valleys also shall stand so thick with corn, that they shall laugh and sing.
+"""),
+]
 
-Thy kingdom is an everlasting kingdom,
-and thy dominion endureth throughout all ages.
-The LORD upholdeth all such as fall,
-and lifteth up all those that are down.
-    """),
+REPEATS=[
     """
     ALMIGHTY God,
 Father of our Lord Jesus Christ,
