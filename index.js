@@ -19,25 +19,28 @@ const parsePsalm = (title, text) => [
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-07-12',
-  massCount: 'Fifth Sunday after Trinity',
+  isodate: '2020-07-26',
+  massCount: 'Seventh Sunday after Trinity',
   massCommon: '',
   time: '11 AM',
   priest: 'Fr. Nathan Davis',
   psalm: parsePsalm(
-    'Psalm 65: ​Te decet hymnus',
+    'Psalm 119',
     `
-    9 Thou visitest the earth, and ​blessest it; ​| thou makest it very ​plenteous.
-    10 The river of God is full of ​water:​ | thou preparest their corn, for so thou providest for the ​earth.
+    57 Thou art my portion, O LORD; | I have promised to keep thy law.
+    72 The law of thy mouth is dearer unto me | than thousands of gold and silver.
 
-    11 Thou waterest her furrows; thou sendest rain into the little valleys there- ​of;​ | thou makest it soft with the drops of rain, and blessest the ​increase of it.
-    12 Thou crownest the year with thy ​goodness; ​| and thy clouds drop ​fatness.
+    76 O let thy merciful kindness be my comfort, | according to thy word unto thy servant.
+    77 O let thy loving mercies come unto me, that I may live; | for thy law is my de- light.
 
-    13 They shall drop upon the dwellings of the ​wilderness; ​| and the little hills shall rejoice on every ​side.
-    14 The folds shall be full of ​sheep; |​ the valleys also shall stand so thick with corn, that they shall laugh and ​sing.
+    127 For I love thy com- mandments | above gold and precious stones.
+    128 Therefore hold I straight all thy com- mandments; | and all false ways I utterly ab- hor.
+    
+    129 Thy testimonies are wonderful; | therefore doth my soul keep them.
+    130 When thy word goeth forth, | it giveth light and understanding unto the simple.
     `
   ),
-  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/5th%20Sunday%20After%20Trinity%20Worship%20Aid.pdf',
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/7th%20Sunday%20after%20Trinity%20Sunday%20July%2026th.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');

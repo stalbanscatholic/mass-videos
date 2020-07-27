@@ -132,27 +132,32 @@ def split_paragraphs(text):
 
 CAPTIONS=[
     """
-The Divine Worship Mass for Fifth Sunday after Trinity 2020
+The Divine Worship Mass for Seventh Sunday after Trinity 2020
 at St. Alban’s Catholic Church, a parish community of
 the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
     """,
     *split_paragraphs("""
-Psalm 65: Te decet hymnus
+Psalm 119
 
-Thou visitest the earth, and blessest it; 
-thou makest it very plenteous.
-The river of God is full of water:
-thou preparest their corn, for so thou providest for the earth.
+Thou art my portion, O LORD;
+I have promised to keep thy law.
+The law of thy mouth is dearer unto me
+than thousands of gold and silver.
 
-Thou waterest her furrows; thou sendest rain into the little valleys there-of;
-thou makest it soft with the drops of rain, and blessest the increase of it.
-Thou crownest the year with thy goodness; 
-and thy clouds drop fatness.
+O let thy merciful kindness be my comfort,
+according to thy word unto thy servant.
+O let thy loving mercies come unto me, that I may live;
+for thy law is my de-light.
 
-They shall drop upon the dwellings of the wilderness; 
-and the little hills shall rejoice on every side.
-The folds shall be full of sheep;
-the valleys also shall stand so thick with corn, that they shall laugh and sing.
+For I love thy com-mandments
+above gold and precious stones.
+Therefore hold I straight all thy com-mandments;
+and all false ways I utterly ab-hor.
+
+Thy testimonies are wonderful;
+therefore doth my soul keep them.
+When thy word goeth forth,
+it giveth light and understanding unto the simple.
 """),
 ]
 
