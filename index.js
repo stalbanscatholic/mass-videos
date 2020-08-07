@@ -9,33 +9,38 @@ const parsePsalm = (title, text) => [
   [title],
   ...text.trim().split('\n\n').map(
     verse => verse
+      .replace(/\u200b/, '')
       .split(/ \| |\n/)
       .map(line => line
         .trim()
         .replace(/(\w+-) (\w)/, '$1$2')
+        .replace(/^\d+ +/, '')
       ))]
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/
 const context = {
-  isodate: '2020-06-20',
-  massCount: 'Patronal Feast of St. Alban',
+  isodate: '2020-07-26',
+  massCount: 'Seventh Sunday after Trinity',
   massCommon: '',
   time: '11 AM',
-  priest: 'Fr. Evan Simington',
+  priest: 'Fr. Nathan Davis',
   psalm: parsePsalm(
-    'Psalm 31',
+    'Psalm 119',
     `
-    Be thou my strong rock, and house of de- fence, | that thou mayest save me.
-    For thou art my strong rock, and my castle: | be thou also my guide, and lead me for thy Name's sake.
+    57 Thou art my portion, O LORD; | I have promised to keep thy law.
+    72 The law of thy mouth is dearer unto me | than thousands of gold and silver.
+
+    76 O let thy merciful kindness be my comfort, | according to thy word unto thy servant.
+    77 O let thy loving mercies come unto me, that I may live; | for thy law is my de- light.
+
+    127 For I love thy com- mandments | above gold and precious stones.
+    128 Therefore hold I straight all thy com- mandments; | and all false ways I utterly ab- hor.
     
-    Into thy hands I commend my spirit; | for thou hast redeemed me, O LORD, thou God of truth.
-    I will be glad and rejoice in thy mercy; | for thou hast considered my trouble, and hast known my soul in ad- versities.
-    
-    My times are in thy hand; deliver me from the hand of mine enemies, | and from them that persecute me.
-    Show thy servant the light of thy countenance, | and save me for thy mercy's sake.
+    129 Thy testimonies are wonderful; | therefore doth my soul keep them.
+    130 When thy word goeth forth, | it giveth light and understanding unto the simple.
     `
   ),
-  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/6/Patronal%20Feast%20of%20St.%20Alban%20Sunday%20June%2021st.pdf',
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/7th%20Sunday%20after%20Trinity%20Sunday%20July%2026th.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');
