@@ -1,1 +1,5 @@
 output
+.vscode
+*.swp
+node_modules
+
