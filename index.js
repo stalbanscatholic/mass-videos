@@ -3,6 +3,8 @@
 const nunjucks = require('nunjucks');
 const moment = require('moment')
 
+const fs = require('fs').promises;
+
 nunjucks.configure();
 
 const parsePsalm = (title, text) => [
@@ -17,30 +19,27 @@ const parsePsalm = (title, text) => [
         .replace(/^\d+ +/, '')
       ))]
 
-// Get massCount, massCommon from http://prayer.covert.org/tomorrow/
+// Get massCount, massCommon from http://prayer.covert.org/tomorrow/ or the worship aid
 const context = {
-  isodate: '2020-07-26',
-  massCount: 'Seventh Sunday after Trinity',
+  isodate: '2020-08-09',
+  massCount: 'Ninth Sunday after Trinity',
   massCommon: '',
   time: '11 AM',
   priest: 'Fr. Nathan Davis',
   psalm: parsePsalm(
-    'Psalm 119',
+    'Psalm 85',
     `
-    57 Thou art my portion, O LORD; | I have promised to keep thy law.
-    72 The law of thy mouth is dearer unto me | than thousands of gold and silver.
+    8 I will hearken what the LORD God will say; | for he shall speak peace unto his people, and to his saints, that they turn not again unto foolishness.
+    9 For his salvation is nigh them that fear him; | that glory may dwell in our land.
 
-    76 O let thy merciful kindness be my comfort, | according to thy word unto thy servant.
-    77 O let thy loving mercies come unto me, that I may live; | for thy law is my de- light.
+    10 Mercy and truth are met to- gether: | righteousness and peace have kissed each other.
+    11 Truth shall flourish out of the earth, | and righteousness hath looked down from heaven.
 
-    127 For I love thy com- mandments | above gold and precious stones.
-    128 Therefore hold I straight all thy com- mandments; | and all false ways I utterly ab- hor.
-    
-    129 Thy testimonies are wonderful; | therefore doth my soul keep them.
-    130 When thy word goeth forth, | it giveth light and understanding unto the simple.
+    12 Yea, the LORD shall show loving-kindness; | and our land shall give her increase.
+    13 Righteousness shall go be- fore him, | and shall direct his going in the way.
     `
   ),
-  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/7/7th%20Sunday%20after%20Trinity%20Sunday%20July%2026th.pdf',
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/8/9th%20Sunday%20after%20Trinity%20Sunday%20August%209th.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');
@@ -53,8 +52,9 @@ const logResult = filename => {
   return result;
 };
 
-const main = () => {
+const main = async () => {
   console.log(context)
+  await fs.writeFile(`context-${context.isodate}.json`, JSON.stringify(context));
   if (process.argv.length > 2) {
     process.argv.slice(2).forEach(arg => logResult(arg));
   } else {

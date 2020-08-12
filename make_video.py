@@ -5,6 +5,8 @@ import ffmpeg
 
 MASS_VIDEOS_DIR = '/Users/edbrannin/Movies/Mass Videos'
 
+# https://video.stackexchange.com/questions/12105/add-an-image-overlay-in-front-of-video-using-ffmpeg
+
 def input(f, parent_dir=MASS_VIDEOS_DIR, loop_frames=None):
     stream = ffmpeg.input(os.path.join(parent_dir, f))
     if loop_frames:

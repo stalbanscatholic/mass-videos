@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
+import sys
 import os
 from glob import glob
 import math
+import json
 
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
@@ -105,7 +107,7 @@ class TextOverlay(object):
                 )
 
 def get_text_overlay(text, font=None, image_size=(1920, 1080), padding=42, debug=False):
-    overlay = TextOverlay(text, font, image_size, padding, debug)
+    overlay = TextOverlay(text.strip(), font, image_size, padding, debug)
     return overlay.get_overlay()
 
 TEXT = """
@@ -132,32 +134,27 @@ def split_paragraphs(text):
 
 CAPTIONS=[
     """
-The Divine Worship Mass for Seventh Sunday after Trinity 2020
+The Divine Worship Mass for Eigth Sunday after Trinity 2020
 at St. Alban’s Catholic Church, a parish community of
 the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
     """,
     *split_paragraphs("""
-Psalm 119
+Psalm 145
 
-Thou art my portion, O LORD;
-I have promised to keep thy law.
-The law of thy mouth is dearer unto me
-than thousands of gold and silver.
+The LORD is gracious and merciful;
+long-suffering, and of great goodness.
+The LORD is loving unto every man;
+and his mercy is over all his works.
 
-O let thy merciful kindness be my comfort,
-according to thy word unto thy servant.
-O let thy loving mercies come unto me, that I may live;
-for thy law is my de-light.
+The eyes of all wait upon thee, O Lord;
+and thou givest them their meat in due season.
+Thou openest thine hand,
+and fillest all things living with plenteousness.
 
-For I love thy com-mandments
-above gold and precious stones.
-Therefore hold I straight all thy com-mandments;
-and all false ways I utterly ab-hor.
-
-Thy testimonies are wonderful;
-therefore doth my soul keep them.
-When thy word goeth forth,
-it giveth light and understanding unto the simple.
+The LORD is righteous in all his ways,
+and holy in all his works.
+The LORD is nigh unto all them that call upon him;
+yea, all such as call upon him faithfully.
 """),
 ]
 
@@ -225,16 +222,35 @@ Amen.
     """),
 ]
 
+def read_context(filename):
+    with open(filename) as infile:
+        return json.load(infile)
+
 def main():
+    captions = CAPTIONS
+    print(sys.argv)
+    if len(sys.argv) > 1:
+        context = read_context(sys.argv[1])
+
+        captions = [
+    """
+The Divine Worship Mass for {massCount} {year}
+at St. Alban’s Catholic Church, a parish community of
+the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
+    """.format(**context),
+            *['\n'.join(para) for para in context['psalm']],
+        ]
+
+    print(captions)
     os.makedirs('output', exist_ok=True)
     for font_path in glob('fonts/*'):
-        for i, caption in enumerate(CAPTIONS):
+        for i, caption in enumerate(captions):
             name = os.path.basename(font_path[:-4])
             font = ImageFont.truetype(font_path, 42)
             text_image = get_text_overlay(caption, font=font)
             filename = 'output/caption-{}-{}.png'.format(i, name)
             text_image.save(filename)
-            print('Write {}'.format(filename))
+            print('write {}'.format(filename))
 
 if __name__ == '__main__':
     main()
