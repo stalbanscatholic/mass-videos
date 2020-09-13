@@ -21,8 +21,8 @@ const parsePsalm = (title, text) => [
 
 // Get massCount, massCommon from http://prayer.covert.org/tomorrow/ or the worship aid
 const context = {
-  isodate: '2020-09-06',
-  massCount: 'Thirteenth Sunday after Trinity',
+  isodate: '2020-09-13',
+  massCount: 'Fourteenth Sunday after Trinity',
   massCommon: '',
   time: '11 AM',
   priest: 'Fr. Nathan Davis',
@@ -37,7 +37,7 @@ const context = {
     7 God shall bless us; | and all the ends of the world shall fear him.
     `
   ),
-  worship_aid_url: 'https://www.stalbanscatholic.com/documents/2020/9/13th%20Sunday%20after%20Trinity%20Sunday%20September%206th.pdf',
+  worship_aid_url: 'https://stalbanscatholic.com/documents/2020/9/14th%20Sunday%20after%20Trinity%20Sunday%20September%2013th.pdf',
 }
 context.mass = context.massCommon || context.massCount;
 context.date = moment(context.isodate).format('MMMM D, YYYY');
