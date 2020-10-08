@@ -237,11 +237,13 @@ def main():
 The Divine Worship Mass for {massCount} {year}
 at St. Alban’s Catholic Church, a parish community of
 the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
-    """.format(**context),
+    """.format(**context).strip(),
             *['\n'.join(para) for para in context['psalm']],
         ]
 
-    print(captions)
+    for caption in captions:
+        print(caption)
+        print('---')
     os.makedirs('output', exist_ok=True)
     for font_path in glob('fonts/*'):
         for i, caption in enumerate(captions):
