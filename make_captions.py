@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import traceback
 import sys
 import os
 from glob import glob
@@ -110,15 +111,19 @@ def get_text_overlay(text, font=None, image_size=(1920, 1080), padding=42, debug
     overlay = TextOverlay(text.strip(), font, image_size, padding, debug)
     return overlay.get_overlay()
 
-TEXT = """
-In union, dear Lord, with all the faithful at every altar of thy Church
-where the blessed Body and Blood are being offered to the Father,
-I desire to offer thee praise and thanksgiving. I believe thou art
-truly present in the Most Holy Sacrament.
+SPIRITUAL_COMMUNION = """
+In union, dear Lord, with all the faithful
+at every altar of thy Church
+where the blessed Body and Blood are
+being offered to the Father,
+I desire to offer thee praise and thanksgiving.
+I believe thou art truly present
+in the Most Holy Sacrament.
 
-And since I cannot now receive thee sacramentally, I beseech thee to
-come spiritually into my heart. I unite myself unto thee,
-and embrace thee with all the affections of my soul.
+And since I cannot now receive thee sacramentally,
+I beseech thee to come spiritually into my heart.
+I unite myself unto thee, and embrace thee
+with all the affections of my soul.
 Let me never be separated from thee.
 Let me live and die in thy love.
 
@@ -197,7 +202,7 @@ and that we may evermore dwell in him, and he in us.
 
 Amen.
     """,
-    TEXT,
+    SPIRITUAL_COMMUNION,
     *split_paragraphs("""
     ALMIGHTY and everliving God,
 we most heartily thank thee for that thou dost feed us,
@@ -241,18 +246,28 @@ the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
             *['\n'.join(para) for para in context['psalm']],
         ]
 
+    if True:
+        captions = [
+            "The mass will resume shortly.",
+            SPIRITUAL_COMMUNION,
+        ]
+
     for caption in captions:
         print(caption)
         print('---')
     os.makedirs('output', exist_ok=True)
     for font_path in glob('fonts/*'):
         for i, caption in enumerate(captions):
-            name = os.path.basename(font_path[:-4])
-            font = ImageFont.truetype(font_path, 42)
-            text_image = get_text_overlay(caption, font=font)
-            filename = 'output/caption-{}-{}.png'.format(i, name)
-            text_image.save(filename)
-            print('write {}'.format(filename))
+            try:
+                name = os.path.basename(font_path[:-4])
+                font = ImageFont.truetype(font_path, 54)
+                text_image = get_text_overlay(caption, font=font)
+                filename = 'output/caption-{}-{}.png'.format(i, name)
+                text_image.save(filename)
+                print('wrote {}'.format(filename))
+            except:
+                print('Error writing caption {} with font {}'.format(i, font_path))
+                traceback.print_exc()
 
 if __name__ == '__main__':
     main()
