@@ -3,3 +3,4 @@ output
 *.swp
 node_modules
 
+context-*.json
