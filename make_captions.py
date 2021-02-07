@@ -250,6 +250,8 @@ the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
         captions = [
             "The mass will resume shortly.",
             SPIRITUAL_COMMUNION,
+            "Please be patient as we try to resolve\nproblems with the audio",
+            "We are unable to stream this week\ndue to technical difficulties.\n\nWe aplogize for the inconvenience."
         ]
 
     for caption in captions:
