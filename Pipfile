@@ -14,4 +14,5 @@ python_version = "3.8"
 
 [scripts]
 make_video = "python make_video.py"
+make_captions = "python make_captions.py"
 
