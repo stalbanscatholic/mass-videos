@@ -12,15 +12,17 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from rounded_rectangle import rounded_rectangle
 
 OVERLAY_BACKROUND_ALPHA = math.floor(255 * 0.9)
-WHITE=(255, 255, 255, 255)
-BLACK=(0, 0, 0, 0)
+WHITE = (255, 255, 255, 255)
+BLACK = (0, 0, 0, 0)
+
 
 def wrap_line(d, line, font, max_width):
     words = line.split(' ')
     result = ''
     for word in words:
         new_line = False
-        width, height = d.multiline_textsize('{} {}'.format(result, word), font=font)
+        width, height = d.multiline_textsize(
+            '{} {}'.format(result, word), font=font)
         if width > max_width:
             new_line = True
         result += '{}{}'.format(new_line and '\n' or ' ', word)
@@ -33,7 +35,8 @@ class TextOverlay(object):
         self.font = font
         if self.font is None:
             # get a font
-            self.font = ImageFont.truetype('/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf', 42)
+            self.font = ImageFont.truetype(
+                '/usr/share/fonts/truetype/ubuntu/Ubuntu-B.ttf', 42)
         self.image_size = image_size
         self.image_width, self.image_height = self.image_size
         self.padding = padding
@@ -47,12 +50,14 @@ class TextOverlay(object):
     def wrap_text(self):
         d = ImageDraw.Draw(self.make_image())
         self.text = '\n'.join(
-                map(
-                    lambda line: wrap_line(d, line, self.font, self.image_width - self.padding*4),
+            map(
+                    lambda line: wrap_line(
+                        d, line, self.font, self.image_width - self.padding*4),
                     self.text.split('\n')
-                    )
-                )
-        self.text_width, self.text_height = d.multiline_textsize(self.text, font=self.font)
+            )
+        )
+        self.text_width, self.text_height = d.multiline_textsize(
+            self.text, font=self.font)
 
     def draw_text_image(self):
         image = self.make_image()
@@ -61,20 +66,20 @@ class TextOverlay(object):
 
         if self.debug:
             d.rectangle(
-                    [(text_upper_right_x, self.padding * 2), (text_upper_right_x + self.text_width, self.padding * 2 + self.text_height + 1)],
-                    outline=(255, 0, 0)
-                    )
+                [(text_upper_right_x, self.padding * 2), (text_upper_right_x +
+                                                          self.text_width, self.padding * 2 + self.text_height + 1)],
+                outline=(255, 0, 0)
+            )
 
         d.multiline_text(
-                (text_upper_right_x, self.padding * 2),
-                self.text,
-                font=self.font,
-                fill=WHITE,
-                align="center",
-                )
+            (text_upper_right_x, self.padding * 2),
+            self.text,
+            font=self.font,
+            fill=WHITE,
+            align="center",
+        )
 
-        return image;
-        
+        return image
 
     def draw_background(self):
         image = self.make_image()
@@ -83,33 +88,35 @@ class TextOverlay(object):
         text_upper_right_x = (self.image_width - self.text_width) / 2
 
         upper_right = (
-                text_upper_right_x - self.padding,
-                self.padding,
-                )
+            text_upper_right_x - self.padding,
+            self.padding,
+        )
         lower_left = (
-                text_upper_right_x + self.text_width + self.padding,
-                self.text_height + self.padding * 3,
-                )
+            text_upper_right_x + self.text_width + self.padding,
+            self.text_height + self.padding * 3,
+        )
 
         rounded_rectangle(
-                d,
-                [upper_right, lower_left],
-                self.padding,
-                fill=(0, 0, 0, OVERLAY_BACKROUND_ALPHA)
-                )
+            d,
+            [upper_right, lower_left],
+            self.padding,
+            fill=(0, 0, 0, OVERLAY_BACKROUND_ALPHA)
+        )
 
         # return image.filter(ImageFilter.BoxBlur(2))
         return image.filter(ImageFilter.GaussianBlur(5))
-        
+
     def get_overlay(self):
         return Image.alpha_composite(
-                self.draw_background(),
-                self.draw_text_image(),
-                )
+            self.draw_background(),
+            self.draw_text_image(),
+        )
+
 
 def get_text_overlay(text, font=None, image_size=(1920, 1080), padding=42, debug=False):
     overlay = TextOverlay(text.strip(), font, image_size, padding, debug)
     return overlay.get_overlay()
+
 
 SPIRITUAL_COMMUNION = """
 In union, dear Lord, with all the faithful
@@ -130,14 +137,16 @@ Let me live and die in thy love.
 Amen.
 """.strip()
 
+
 def split_paragraphs(text):
     return [
         para.replace('\n-\n', '\n\n')
-        for para in 
+        for para in
         text.strip().split('\n\n')
     ]
 
-CAPTIONS=[
+
+CAPTIONS = [
     """
 The Divine Worship Mass for Eigth Sunday after Trinity 2020
 at St. Alban’s Catholic Church, a parish community of
@@ -163,7 +172,7 @@ yea, all such as call upon him faithfully.
 """),
 ]
 
-REPEATS=[
+REPEATS = [
     """
     ALMIGHTY God,
 Father of our Lord Jesus Christ,
@@ -174,7 +183,7 @@ which we from time to time most grievously have committed,
 by thought, word, and deed, against thy divine majesty,
 provoking most justly thy wrath and indignation against us.
 """,
-"""
+    """
 We do earnestly repent,
 and are heartily sorry for these our misdoings;
 the remembrance of them is grievous unto us,
@@ -227,9 +236,11 @@ Amen.
     """),
 ]
 
+
 def read_context(filename):
     with open(filename) as infile:
         return json.load(infile)
+
 
 def main():
     captions = CAPTIONS
@@ -238,7 +249,7 @@ def main():
         context = read_context(sys.argv[1])
 
         captions = [
-    """
+            """
 The Divine Worship Mass for {massCount} {year}
 at St. Alban’s Catholic Church, a parish community of
 the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
@@ -251,7 +262,8 @@ the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
             "The mass will resume shortly.",
             SPIRITUAL_COMMUNION,
             "Please be patient as we try to resolve\nproblems with the audio",
-            "We are unable to stream this week\ndue to technical difficulties.\n\nWe aplogize for the inconvenience."
+            "We are unable to livestream this week\ndue to technical difficulties.\n\nWe aplogize for the inconvenience.",
+            "We are unable to livestream this week\ndue to technical difficulties.\n\nWe will post a recording this afternoon.\n\nWe aplogize for the inconvenience.",
         ]
 
     for caption in captions:
@@ -271,6 +283,6 @@ the Ordinariate of the Chair of St. Peter in Rochester, N.Y.
                 print('Error writing caption {} with font {}'.format(i, font_path))
                 traceback.print_exc()
 
+
 if __name__ == '__main__':
     main()
-
